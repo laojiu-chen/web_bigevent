@@ -20,14 +20,16 @@ function getUserInfo () {
         //     Authorization:localStorage.getItem("token")||""
         // },
         success: function (res) {
+            // console.log(res);
+            
             if(res.status == 1) {
-               return layui.layer.msg("登录失败！")
+               return layui.layer.msg("获取用户信息失败!")
             }
             //渲染头像
             randerAvatar(res.data)
         },
 
-        //进行身份验证，没有token身份不能访问后台页面
+       // 进行身份验证，没有token身份不能访问后台页面
         // complete: function (res) {
         //     if(res.responseJSON.status == 1 && res.responseJSON.message == "身份认证失败！")
         //     {
@@ -43,6 +45,8 @@ function getUserInfo () {
 function randerAvatar(user) {
     // console.log(2);
     //渲染用户名
+    // console.log(user);
+    
     var name = user.nickname || user.username;
     $("#welcome").html(`<span id="welcome">欢迎&nbsp&nbsp${name}</span>`);
     //渲染头像
