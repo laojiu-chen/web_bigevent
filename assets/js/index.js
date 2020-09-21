@@ -16,9 +16,6 @@ function getUserInfo () {
     $.ajax({
         url:"/my/userinfo",
         method:"GET",
-        // headers:{
-        //     Authorization:localStorage.getItem("token")||""
-        // },
         success: function (res) {
             // console.log(res);
             
@@ -27,26 +24,13 @@ function getUserInfo () {
             }
             //渲染头像
             randerAvatar(res.data)
-        },
-
-       // 进行身份验证，没有token身份不能访问后台页面
-        // complete: function (res) {
-        //     if(res.responseJSON.status == 1 && res.responseJSON.message == "身份认证失败！")
-        //     {
-        //         location.href = "./login.html"
-        //     }
-            
-        // }
+        }
     })
 }
 
 
 //渲染头像函数
 function randerAvatar(user) {
-    // console.log(2);
-    //渲染用户名
-    // console.log(user);
-    
     var name = user.nickname || user.username;
     $("#welcome").html(`<span id="welcome">欢迎&nbsp&nbsp${name}</span>`);
     //渲染头像
